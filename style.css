@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-clr, white);
+  color: var(--text-clr, black);
+}
+
+:root {
+  --text-clr: black;
+  --bg-clr: white;
+
+  @media (prefers-color-scheme: dark) {
+    --text-clr: white;
+    --bg-clr: #121212;
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-clr);
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.nav-links {
+  list-style: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-clr);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.nav-links.active {
+  right: 0;
+}
+
+.nav-links li a {
+  font-size: 2rem;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1001; /* above sheet */
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-clr, black);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger to cross */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Larger screens */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    height: auto;
+    width: auto;
+    background: none;
+    right: 0;
+    transition: none;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+  }
+}
