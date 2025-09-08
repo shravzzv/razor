@@ -66,27 +66,42 @@ body {
 }
 
 .hamburger {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 25px;
   height: 20px;
   cursor: pointer;
-  z-index: 1001; /* above sheet */
+  z-index: 1001;
 }
 
 .hamburger span {
-  display: block;
-  height: 3px;
+  position: absolute;
+  left: 0;
   width: 100%;
+  height: 3px;
   background-color: var(--text-clr, black);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
 
-/* Hamburger to cross */
+/* Position spans */
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+.hamburger span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.hamburger span:nth-child(3) {
+  bottom: 0;
+}
+
+/* Hamburger → Cross */
 .hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  top: 50%;
+  transform: rotate(45deg);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -94,7 +109,8 @@ body {
 }
 
 .hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  top: 50%;
+  transform: rotate(-45deg);
 }
 
 /* Larger screens */
